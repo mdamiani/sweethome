@@ -266,9 +266,6 @@ function! s:BEInitialize()
   let s:_report = &report
   let &report = 10000
 
-  let s:_list = &list
-  set nolist
-
   setlocal nonumber
   setlocal foldcolumn=0
   setlocal nofoldenable
@@ -317,7 +314,6 @@ function! s:BECleanup()
   if exists("s:_showcmd")   |let &showcmd    = s:_showcmd   |endif
   if exists("s:_cpo")       |let &cpo        = s:_cpo       |endif
   if exists("s:_report")    |let &report     = s:_report    |endif
-  if exists("s:_list")      |let &list       = s:_list      |endif
   let s:running   = 0
   let s:splitMode = ""
 
