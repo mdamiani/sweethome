@@ -1,0 +1,27 @@
+# Mac-like text editing keybindings
+
+binding "gtk-mac-text-entry"
+{
+  bind "<ctrl>Left" { "move-cursor" (display-line-ends, -1, 0) }
+  bind "<shift><ctrl>Left" { "move-cursor" (display-line-ends, -1, 1) }
+  bind "<ctrl>Right" { "move-cursor" (display-line-ends, 1, 0) }
+  bind "<shift><ctrl>Right" { "move-cursor" (display-line-ends, 1, 1) }
+
+  bind "<ctrl>Up" { "move-cursor" (buffer-ends, -1, 0) }
+  bind "<shift><ctrl>Up" { "move-cursor" (buffer-ends, -1, 1) }
+  bind "<ctrl>Down" { "move-cursor" (buffer-ends, 1, 0) }
+  bind "<shift><ctrl>Down" { "move-cursor" (buffer-ends, 1, 1) }
+
+  bind "<alt>Left" { "move-cursor" (words, -1, 0) }
+  bind "<shift><alt>Left" { "move-cursor" (words, -1, 1) }
+  bind "<alt>Right" { "move-cursor" (words, 1, 0) }
+  bind "<shift><alt>Right" { "move-cursor" (words, 1, 1) }
+
+  bind "<alt>Delete" { "delete-from-cursor" (word-ends, 1) }
+  bind "<alt>BackSpace" { "delete-from-cursor" (word-ends, -1) }
+}
+
+class "GtkEntry" binding "gtk-mac-text-entry"
+class "GtkTextView" binding "gtk-mac-text-entry"
+
+

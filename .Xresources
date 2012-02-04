@@ -1,0 +1,91 @@
+!#include "XTerm"
+
+!keycodes
+XTerm*ttyModes: erase ^?
+XTerm*eightBitInput: false
+XTerm*metaSendsEscape: true
+XTerm*backarrowKey: false
+!   BS  0x08 ^H
+!   DEL 0x7f ^?
+!   ESC 0x1b ^[
+!XTerm*VT100.Translations: #override \
+!	<Key>BackSpace: string(0x7f) \n\
+!	Shift Ctrl <Key>N: spawn-new-terminal() \n\
+!	<Key>Delete:    string(0x1b) string("[3;3~")
+XTerm*VT100.Translations: #override \
+	Shift Ctrl <Key>W: quit() \n\
+	Shift Ctrl <Key>Prior: string(\033[5;6~) \n\
+	Shift Ctrl <Key>Next: string(\033[6;6~) \n\
+	Shift Ctrl <Key>N: string(\033[1;6N~) \n\
+	Shift Ctrl <Key>T: string(\033[1;6T~)
+
+!scrollbar
+XTerm*saveLines: 10000
+XTerm*scrollBar: true
+XTerm*rightScrollBar: true
+XTerm*jumpScroll: true
+
+!profile
+XTerm*background: #E0DDCA
+XTerm*foreground: #382222
+XTerm*cursorColor: #382222
+!XTerm*highlightColor: #382222
+!XTerm*colorBD: rgb:fc/fc/fc
+XTerm*colorBD: Black
+XTerm*colorBDMode: true
+XTerm*colorUL: DarkRed
+XTerm*colorULMode: true
+XTerm*veryBoldColors: 6
+
+!cursor
+XTerm*cursorBlink: true
+XTerm*cursorOffTime: 600
+XTerm*cursorOnTime: 600
+
+!fonts
+!XTerm*faceName: xft:Dejavu Sans Mono:pixelsize=14
+XTerm*faceName: xft:Mono:pixelsize=14
+!XTerm*font: -*-terminus-medium-*-*-*-15-*-*-*-*-*-*-*
+XTerm*font: -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
+XTerm*boldColors: true
+XTerm*boldMode: true
+
+!misc
+XTerm*utf8: 1
+XTerm*reverseVideo: false
+XTerm*dynamicColors: true
+
+!size
+XTerm*VT100.geometry: 120x35
+XTerm*ptySttySize: true
+XTerm*waitForMap: true
+
+!scroll
+XTerm*scrollTtyOutput: false
+XTerm*scrollKey: true
+
+!ANSI COLORS
+!black
+XTerm*color0:   #2E3436
+XTerm*color8:   #5F615C
+!red
+XTerm*color1:   #AA0000
+XTerm*color9:   #EF2929
+!green
+XTerm*color2:   #028000
+XTerm*color10:  #03B200
+!yellow
+XTerm*color3:   #B08400
+XTerm*color11:  #CCAA00
+!blue
+XTerm*color4:   #0029B5
+XTerm*color12:  #268FFF
+!magent
+XTerm*color5:   #940094
+XTerm*color13:  #CC00CC
+!cyan
+XTerm*color6:   #06989A
+XTerm*color14:  #34E2E2
+!white
+XTerm*color7:   #AAAAAA
+XTerm*color15:  #FFFFFF

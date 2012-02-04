@@ -1,0 +1,41 @@
+# Tasti Home/End per spostarsi
+# all'inizio/fine della riga
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# PgUp e PgDn per l'autocompletamento
+# in base alla history
+"\e[5~": history-search-backward
+"\e[6~": history-search-forward
+
+# Alt + Canc/Delete per eliminare intere parole
+# davanti/dietro al cursore
+"\e[3;3~": kill-word
+"\e[3;9~": kill-word
+Meta-Rubout: backward-kill-word
+
+# Alt + frecce destra/sinistra per spostarsi
+# da una parola all'altra
+"\e[1;3C": forward-word
+"\e[1;3D": backward-word
+
+# Pseudo vim mappings
+"\el": forward-word
+"\eh": backward-word
+"\ej": history-search-forward
+"\ek": history-search-backward
+"\ex": kill-word
+"\eX": backward-kill-word
+
+# Two escapes clear command line.
+"\e\e": kill-whole-line
+
+# Cycle through completitions
+"\e/": menu-complete
+
+# Completamento case-insensitive
+set completion-ignore-case on
+
+# Use one tab only to show alternatives
+set show-all-if-ambiguous on
+
