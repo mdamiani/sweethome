@@ -189,7 +189,7 @@ function! s:ExtendTagItemToPopupItem(tagItem, szTypeName)
     let tagItem['abbr'] = szAbbr
     let tagItem['menu'] = szItemMenu
     let tagItem['info'] = szItemInfo
-    let tagItem['dup'] = (s:hasPreviewWindow && index(['f', 'p', 'm'], tagItem.kind[0])>=0)
+    let tagItem['dup'] = (index(['f', 'p', 'm'], tagItem.kind[0])>=0)
     return tagItem
 endfunc
 
