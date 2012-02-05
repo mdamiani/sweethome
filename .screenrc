@@ -4,6 +4,15 @@ bindkey ^[[1;6T~ screen # Ctrl-Shit-T
 #bindkey ^[[1;6T~ stuff "screen -X eval \"chdir \$PWD\"; screen^M" # Ctrl-Shit-T
 bindkey ^[[1;6N~ stuff "xterm -e \'cd \"\$PWD\" && screen -S `date +%s`\' &^M" # Ctrl-Shit-N
 
+# alt-movements in copy mode
+bindkey -m ^[k stuff ^u
+bindkey -m ^[[1;9A stuff ^u
+bindkey -m ^[j stuff ^d
+bindkey -m ^[[1;9B stuff ^d
+bindkey -m ^[h stuff b
+bindkey -m ^[[1;9D stuff b
+bindkey -m ^[l stuff w
+bindkey -m ^[[1;9C stuff w
 
 vbell off
 startup_message off
