@@ -1,4 +1,5 @@
 !#include "XTerm"
+*customization: -color
 
 !keycodes
 XTerm*ttyModes: erase ^?
@@ -54,6 +55,7 @@ XTerm*boldMode: true
 XTerm*utf8: 1
 XTerm*reverseVideo: false
 XTerm*dynamicColors: true
+XTerm*allowTcapOps: true
 
 !size
 XTerm*VT100.geometry: 120x35
