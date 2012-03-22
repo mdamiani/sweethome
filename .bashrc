@@ -32,6 +32,7 @@ WHITE="\[\033[0;37m\]"
 
 BLACK_REV="\[\033[7;30m\]"
 NORMAL_REV="\[\033[7;39m\]"
+NORMAL_UND="\[\033[4;39m\]"
 
 # Load system bashrc
 if [ -f /etc/bashrc ]; then
@@ -45,7 +46,7 @@ function parse_git_branch
 }
 
 #export PS1="${YELLOW}\u${CYAN}@${PURPLE}\h${CYAN}:${GREEN}\w${CYAN}\$${NONE} "
-export PS1="${NORMAL_REV}\u@\h${NONE}:${BLUE}\w${GREEN}\$(parse_git_branch)${NONE}\n\$>${NONE} "
+export PS1="${NONE}\u@\h${NONE}:${BLUE}\w${GREEN}\$(parse_git_branch)${NONE}\n\$>${NONE} "
 
 # Helper functions
 svndiff() { svn diff --diff-cmd=colordiff "$@"; }
