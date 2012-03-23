@@ -78,7 +78,11 @@ esac
 export HISTSIZE=10000           # number of lines in history file
 export HISTCONTROL=ignoreboth   # don't save already present commands
 shopt -s histappend             # append commands to the history file, rather than overwrite it
-#export PROMPT_COMMAND="$PROMPT_COMMAND;history -a" # Save each command right after it has been executed,
+
+# Save each command right after it has been executed
+#export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+# Set current directory for tmux enviroment
+export PROMPT_COMMAND="[ -n \"\$TMUX\" ] && tmux setenv TMUXPWD_\$(tmux display -p \"#I#P\") \$PWD" #; $PROMPT_COMMAND"
 
 # Terminal
 export TERM='xterm-256color'

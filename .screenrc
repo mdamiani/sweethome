@@ -1,8 +1,6 @@
 bindkey ^[[5;6~ prev    # Ctrl-Shit-PgUp
 bindkey ^[[6;6~ next    # Ctrl-Shit-PgUp
 bindkey ^[[1;6T~ screen # Ctrl-Shit-T
-#bindkey ^[[1;6T~ stuff "screen -X eval \"chdir \$PWD\"; screen^M" # Ctrl-Shit-T
-bindkey ^[[1;6N~ stuff "xterm -e \'cd \"\$PWD\" && screen -S `date +%s`\' &^M" # Ctrl-Shit-N
 
 # alt-movements in copy mode
 bindkey -m ^[k stuff ^u
@@ -24,7 +22,6 @@ caption string "%{= kB}%-Lw%{=s kB}%50>%n%f* %t %{-}%+Lw%<"
 
 # open programs with escape plus the binding; also names tab
 #bind m screen -t 'Mutt' 7 mutt
-#bind s screen -t 'Snownews' 7 snownews
 
 # avoid screen conflicting with vi bindings; basically,
 # whenever it sees "escape", screen waits for more

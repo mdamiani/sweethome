@@ -190,11 +190,6 @@ endif
 "-- line
 nmap <Home> ^
 imap <Home> <Esc><Home>i
-"-- tags
-nmap <C-right> <C-]>
-imap <C-right> <C-O><C-]>
-nmap <C-left> <C-T>
-imap <C-left> <C-O><C-T>
 "-- words movements
 nmap <M-h> b
 nmap <M-l> w
