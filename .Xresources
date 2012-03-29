@@ -46,15 +46,15 @@ XTerm*cursorOffTime: 600
 XTerm*cursorOnTime: 600
 
 !fonts
-!XTerm*faceName: xft:Dejavu Sans Mono:pixelsize=14
-XTerm*faceName: xft:Mono:pixelsize=14
-!XTerm*font: -*-terminus-medium-*-*-*-15-*-*-*-*-*-*-*
+XTerm*faceName: Mono
+XTerm*faceSize: 10
+!XTerm*faceName: xft:Mono:pixelsize=14
 XTerm*font: -misc-fixed-medium-r-normal--14-130-75-75-c-70-iso10646-1
 XTerm*boldColors: true
 XTerm*boldMode: true
 
 !misc
-XTerm*utf8: 1
+XTerm*utf8: 2
 XTerm*reverseVideo: false
 XTerm*dynamicColors: true
 XTerm*allowTcapOps: true
