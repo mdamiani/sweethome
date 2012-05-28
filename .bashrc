@@ -82,10 +82,10 @@ shopt -s histappend             # append commands to the history file, rather th
 # Save each command right after it has been executed
 #export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # Set current directory for tmux enviroment
-export PROMPT_COMMAND="[ -n \"\$TMUX\" ] && tmux setenv TMUXPWD_\$(tmux display -p \"#I#P\") \$PWD" #; $PROMPT_COMMAND"
+export PROMPT_COMMAND="[ -n \"\$TMUX\" ] && tmux setenv TMUXPWD_\$(tmux display -p \"#I#P\" 2>/dev/null) \$PWD 2>/dev/null" #; $PROMPT_COMMAND"
 
 # Terminal
-export TERM='xterm-256color'
+[ -z $TERM ] && export TERM='xterm-256color'
 
 # Load local environment
 if [ -f .bashrc_local ]; then
