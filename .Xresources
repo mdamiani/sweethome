@@ -22,7 +22,8 @@ XTerm*VT100.Translations: #override \
 	<Key>Home: string(\033OH) \n\
 	<Key>End: string(\033OF) \n\
 	Shift Ctrl <Key>Prior: string(\033[5;6~) \n\
-	Shift Ctrl <Key>Next: string(\033[6;6~) \n
+	Shift Ctrl <Key>Next: string(\033[6;6~) \n\
+	<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n
 
 !scrollbar
 XTerm*saveLines: 10000
