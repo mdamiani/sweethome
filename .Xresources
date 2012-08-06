@@ -96,3 +96,6 @@ XTerm*color14:  #34E2E2
 !white
 XTerm*color7:   #AAAAAA
 XTerm*color15:  #FFFFFF
+
+!selection: -+_/~@.*
+XTerm*charClass: 45:48,43:48,95:48,47:48,126:48,64:48,46:48,42:48
