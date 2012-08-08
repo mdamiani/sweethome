@@ -13,14 +13,11 @@ XTerm*backarrowKey: false
 !	<Key>BackSpace: string(0x7f) \n\
 !	Shift Ctrl <Key>N: spawn-new-terminal() \n\
 !	Shift Ctrl <Key>W: quit() \n\
-!	<Key>Delete:    string(0x1b) string("[3;3~")
-!XTerm*VT100.Translations: #override \
-!	Shift Ctrl <Key>Prior: string(\033[5;6~) \n\
-!	Shift Ctrl <Key>Next: string(\033[6;6~)
 
 XTerm*VT100.Translations: #override \
 	<Key>Home: string(\033OH) \n\
 	<Key>End: string(\033OF) \n\
+	Meta <Key>Delete: string("\033[3;3~") \n\
 	Shift Ctrl <Key>Prior: string(\033[5;6~) \n\
 	Shift Ctrl <Key>Next: string(\033[6;6~) \n\
 	<Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0) \n
