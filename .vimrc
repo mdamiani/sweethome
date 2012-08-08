@@ -187,6 +187,7 @@ else
 	cmap [3;3~ <M-Del>
 	nmap  <M-BS>
 	cmap  <M-BS>
+	nmap [24;5~ <C-F12>
 endif
 "-- line
 nmap <Home> ^
