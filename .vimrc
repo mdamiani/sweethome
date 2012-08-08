@@ -25,6 +25,7 @@ syntax enable
 set vb t_vb=      " set visualbell
 "set autochdir "change the current directory whenever window changes
 "set clipboard=unnamed " use the system clipboard as the default register for yank/paste
+set timeout timeoutlen=0 " don't wait for key sequences
 
 " Tab completition
 set wildmenu                "make tab completion act more like bash
