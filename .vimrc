@@ -103,13 +103,6 @@ set ofu=syntaxcomplete#Complete
 set completeopt=menuone ",menu,longest,preview
 imap <C-Space> <C-X><C-O><C-N>
 
-" Show percentage as current_byte / total_bytes
-function! Percent()
-  let byte = line2byte( line( "." ) ) + col( "." ) - 1
-  let size = (line2byte( line( "$" ) + 1 ) - 1)
-  return (byte * 100) / size
-endfunction
-
 " Set a more informative status lines
 if has('gui_running')
 	:hi StatusLineNC cterm=reverse gui=reverse
@@ -118,8 +111,7 @@ else
 	:hi StatusLine cterm=reverse gui=reverse
 	:hi StatusLineNC cterm=none gui=none
 endif
-:set statusline=%f%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%{Percent()}%%]\ [LEN=%L]
-":set statusline=%f%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=%f%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "exec "let &l:statusline = ' '"
 
 " Show the status line
