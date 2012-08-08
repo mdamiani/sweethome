@@ -1,0 +1,9 @@
+clear lock
+clear mod1
+clear mod4
+keycode 66 = Alt_L Meta_L
+keycode 64 = Alt_L Meta_L
+keycode 50 = Shift_L Caps_Lock Shift_L Caps_Lock
+keycode 62 = Shift_R Caps_Lock Shift_R Caps_Lock
+add mod1 = Alt_L Meta_L
+add mod4 = Super_L Super_R Hyper_L
