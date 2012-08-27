@@ -1,5 +1,6 @@
 !#include "XTerm"
 *customization: -color
+XTerm*termName: xterm-256color
 
 !keycodes
 XTerm*ttyModes: erase ^?
