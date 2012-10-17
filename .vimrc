@@ -90,7 +90,10 @@ au BufWinLeave * call clearmatches()
 
 " Switch between header and implementation
 let g:f4ext = 'cpp'
-nmap <F4> :exec ":e %:s,.h$,.X123X,:s,." . g:f4ext . "$,.h,:s,.X123X$,." . g:f4ext . ","<CR>
+command! SourceSwitch :exec ":e %:s,.h$,.X123X,:s,." . g:f4ext . "$,.h,:s,.X123X$,." . g:f4ext . ","
+nmap <F4> :SourceSwitch<CR>
+
+
 " Run program
 nmap <F5> :w \| make<CR>
 nmap <S-F5> :w \| make run<CR>
@@ -101,7 +104,6 @@ filetype on
 filetype plugin on
 set ofu=syntaxcomplete#Complete
 set completeopt=menuone ",menu,longest,preview
-imap <C-Space> <C-X><C-O><C-N>
 
 " Set a more informative status lines
 if has('gui_running')
@@ -113,8 +115,6 @@ else
 endif
 set statusline=%f%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
 "exec "let &l:statusline = ' '"
-
-" Show the status line
 :set laststatus=2
 
 " Remember last cursor position.
@@ -139,9 +139,8 @@ au VimLeave * :call SaveSession()
 
 " Qt qmake
 command! -nargs=* QMakeDebug :!qmake CONFIG+=debug <args>
-cabbrev qmakd QMakeDebug
 command! -nargs=* QMakeRelease :!qmake <args>
-cabbrev qmakr QMakeRelease
+au BufNewFile,BufRead *.pr{o,i} set filetype=qmake
 
 " Debug: breakpoints
 nmap <F9> Oasm("int $3"); // BREAKPOINT<Esc>
@@ -158,15 +157,19 @@ command! -nargs=1 RGrep :grep -I
 nmap <F3> :copen \| silent FGrep <C-R><C-W>
 nmap <S-F3> :copen \| silent RGrep <C-R><C-W>
 
+" Tags
+set showfulltag
+set tags+=~/.vimtags/stl
+command! MakeTags :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
+	\ --exclude="moc_*.cpp" --exclude="ui_*.h"
+	\ .
+nmap <F12> :MakeTags<CR>
+
 
 " ####### KEY BINDINGS #######
 if has('gui_running')
 	set winaltkeys=no
 else
-	nmap x <M-x>
-	cmap x <M-x>
-	nmap X <M-S-x>
-	cmap X <M-S-x>
 	nmap h <M-h>
 	cmap h <M-h>
 	nmap l <M-l>
@@ -175,11 +178,11 @@ else
 	cmap j <M-j>
 	nmap k <M-k>
 	cmap k <M-k>
-	nmap [3;3~ <M-Del>
-	cmap [3;3~ <M-Del>
 	nmap  <M-BS>
 	cmap  <M-BS>
-	nmap [24;5~ <C-F12>
+	nmap [3;3~ <M-Del>
+	cmap [3;3~ <M-Del>
+	nmap [14~ <F4>
 endif
 "-- line
 nmap <Home> ^
@@ -191,25 +194,16 @@ nmap <M-k> {
 nmap <M-j> }
 "-- words deletions
 nmap <M-Del> dw
-nmap <M-x> dw
-cmap <M-Del> <S-right><C-W>
-imap <M-Del> <C-O>dw
 nmap <M-BS> hdiw
-nmap <M-S-x> hdiw
-cmap <M-BS> <C-W>
+imap <M-Del> <C-O>dw
 imap <M-BS> <C-O>h<C-O>diw
 "-- command history
 cmap <M-h> <S-left>
 cmap <M-l> <S-right>
 cmap <M-j> <Down>
 cmap <M-k> <Up>
-"-- tab navigation
-nmap <M-PageUp> :tabprevious<CR>
-nmap <M-PageDown> :tabnext<CR>
-nmap <M-Insert> :tabnew<CR>
-imap <M-PageUp> <Esc>:tabprevious<CR>i
-imap <M-PageDown> <Esc>:tabnext<CR>i
-imap <M-Insert> <Esc>:tabnew<CR>
+cmap <M-Del> <S-right><C-W>
+cmap <M-BS> <C-W>
 
 
 " ####### PLUGINS #######
@@ -248,15 +242,6 @@ let tlist_make_settings  = 'make;m:makros;t:targets;i:includes'
 let tlist_qmake_settings = 'qmake;t:variables'
 "au FileType taglist setlocal guioptions-=L " don't show left scroll bar on taglist window
 
-" Tags
-set showfulltag
-set tags+=~/.vimtags/stl
-set tags+=~/.vimtags/qt
-nmap <C-F12> :!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q
-	\ --exclude="moc_*.cpp" --exclude="ui_*.h"
-	\ .<CR>
-au BufNewFile,BufRead *.pr{o,i} set filetype=qmake
-
 " OmniCppComplete
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
@@ -268,4 +253,3 @@ let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
 "let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
 " automatically open and close the popup menu / preview window
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-
