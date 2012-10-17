@@ -115,9 +115,13 @@ URxvt.heysym.Shift-Ctrl-Next: \033[6;6~
 URxvt*scrollBar: false
 URxvt*depth: 32
 URxvt*geometry: 120x35
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: false
+URxvt*scrollTtyKeypress: true
+
 
 ! fonts
-URxvt*font: xft:Mono:size=12
+URxvt*font: xft:Mono:size=11
 URxvt*boldColors: true
 URxvt*boldMode: true
 URxvt*colorBD: Black
@@ -127,7 +131,7 @@ URxvt*colorULMode: true
 URxvt*veryBoldColors: 6
 
 ! word selection
-URxvt*cutchars: 45:48,43:48,95:48,47:48,126:48,64:48,46:48,42:48
+URxvt*cutchars: "`\"'&()*,;:<=>?[]^{|}"
 
 
 
