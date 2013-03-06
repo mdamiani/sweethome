@@ -63,8 +63,8 @@ else
 	"colorscheme earendel
 endif
 
-" 80 column delimiter
 if v:version >= 703 && !has('gui_running')
+	" 80 column delimiter
 	set colorcolumn=80
 	hi ColorColumn ctermbg=gray guibg=darkgray ctermfg=black guifg=black
 	au FileType qf setlocal cc=0

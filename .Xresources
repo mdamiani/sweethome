@@ -108,8 +108,8 @@ URxvt*termName: xterm-256color
 URxvt.keysym.Home: \033OH
 URxvt.keysym.End: \033OF
 URxvt.keysym.Meta-Delete: \033[3;3~
-URxvt.heysym.Shift-Ctrl-Prior: \033[5;6~
-URxvt.heysym.Shift-Ctrl-Next: \033[6;6~
+URxvt.keysym.Shift-Ctrl-Prior: \033[5;6~
+URxvt.keysym.Shift-Ctrl-Next: \033[6;6~
 
 ! window
 URxvt*scrollBar: false
