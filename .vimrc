@@ -159,7 +159,7 @@ nmap <S-F3> :copen \| silent RGrep <C-R><C-W>
 
 " Tags
 set showfulltag
-set tags+=~/.vimtags/stl
+"set tags+=~/.vimtags/stl
 command! MakeTags :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
 	\ --exclude="moc_*.cpp" --exclude="ui_*.h"
 	\ .
@@ -242,14 +242,3 @@ let tlist_make_settings  = 'make;m:makros;t:targets;i:includes'
 let tlist_qmake_settings = 'qmake;t:variables'
 "au FileType taglist setlocal guioptions-=L " don't show left scroll bar on taglist window
 
-" OmniCppComplete
-let OmniCpp_NamespaceSearch = 1
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1 " show function parameters
-let OmniCpp_MayCompleteDot = 1 " autocomplete after .
-let OmniCpp_MayCompleteArrow = 1 " autocomplete after ->
-let OmniCpp_MayCompleteScope = 1 " autocomplete after ::
-"let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" automatically open and close the popup menu / preview window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
