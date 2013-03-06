@@ -121,7 +121,7 @@ URxvt*scrollTtyKeypress: true
 
 
 ! fonts
-URxvt*font: xft:Mono:size=11
+URxvt*font: xft:Mono:size=10
 URxvt*boldColors: true
 URxvt*boldMode: true
 URxvt*colorBD: Black
