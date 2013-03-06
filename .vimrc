@@ -12,6 +12,7 @@ set number     " show line numbers
 "set paste     " allow paste from clipboard
 set nopaste    " don't allow paste from clipboard since imap doesn't work
 set title      " set window title
+set mouse=a    " use mouse
 
 " Wrap lines
 set wrap
@@ -42,7 +43,6 @@ set showmatch
 
 " ####### COLOR OPTIONS #######
 if has('gui_running')
-	"set mouse=a
 	set lines=52
 	set cmdheight=2
 	set columns=100
