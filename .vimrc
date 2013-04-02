@@ -102,7 +102,7 @@ nmap <C-S-F5> :w \| make debug<CR>
 " Omni completion
 filetype on
 filetype plugin on
-set ofu=syntaxcomplete#Complete
+"set ofu=syntaxcomplete#Complete
 set completeopt=menuone ",menu,longest,preview
 
 " Set a more informative status lines
@@ -242,3 +242,5 @@ let tlist_make_settings  = 'make;m:makros;t:targets;i:includes'
 let tlist_qmake_settings = 'qmake;t:variables'
 "au FileType taglist setlocal guioptions-=L " don't show left scroll bar on taglist window
 
+" ClangComplete
+let g:clang_use_library = 1
