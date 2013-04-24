@@ -56,6 +56,10 @@ if has('gui_running')
 	endif
 	set guioptions-=T    " toolbar
 	set guioptions-=m    " menu
+	set guioptions-=l    " left scrollbar
+	set guioptions-=L    " left scrollbar
+	set guioptions-=r    " right scrollbar
+	set guioptions-=R    " right scrollbar
 	"set transparency=10
 else
 	set t_Co=256
@@ -128,7 +132,7 @@ compiler! gcc
 
 " Sessions
 set sessionoptions-=curdir
-set sessionoptions+=sesdir,winpos,resize
+set sessionoptions+=sesdir,winpos,winsize,resize
 function! SaveSession()
 	if v:this_session != ""
 		exec 'mksession! ' . '"' . v:this_session . '"'
