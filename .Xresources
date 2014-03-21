@@ -131,7 +131,7 @@ URxvt*colorULMode: true
 URxvt*veryBoldColors: 6
 
 ! word selection
-URxvt*cutchars: "`\"'&()*,;:<=>?[]^{|}"
+URxvt*cutchars: "`\"'&()*,;:<=>?[]^{|}│"
 
 ! --- special colors ---
 URxvt*background: [95]#f2f0e6
