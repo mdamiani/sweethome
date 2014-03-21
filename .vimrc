@@ -128,6 +128,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm'\"")|e
 " Quickfix
 set shell=/bin/sh
 au FileType qf setlocal wrap | setlocal linebreak
+au FileType qf wincmd J
 compiler! gcc
 
 " Sessions
@@ -248,3 +249,5 @@ let tlist_qmake_settings = 'qmake;t:variables'
 
 " ClangComplete
 let g:clang_use_library = 1
+let g:clang_complete_copen = 1
+nmap <silent> <F2> :w \| call g:ClangUpdateQuickFix()<CR>
