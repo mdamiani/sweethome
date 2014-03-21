@@ -70,6 +70,7 @@ Darwin)
 	;;
 
 Linux)
+	eval `dircolors`
 	;;
 esac
 
