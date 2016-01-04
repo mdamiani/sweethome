@@ -38,6 +38,7 @@ set hlsearch
 set ignorecase  " sensitive search
 set smartcase   " if pattern contains uppercase chars, the search is case _sensitive_
 set showmatch
+set scrolloff=5 " keeps cursor away from top/bottom of screen
 
 
 
@@ -93,8 +94,8 @@ au BufWinLeave * call clearmatches()
 
 
 " Switch between header and implementation
-let g:f4ext = 'cpp'
-command! SourceSwitch :exec ":e %:s,.h$,.X123X,:s,." . g:f4ext . "$,.h,:s,.X123X$,." . g:f4ext . ","
+let g:F4Ext = 'cpp'
+command! SourceSwitch :exec ":e %:s,.h$,.X123X,:s,." . g:F4Ext . "$,.h,:s,.X123X$,." . g:F4Ext . ","
 nmap <F4> :SourceSwitch<CR>
 
 
@@ -133,7 +134,7 @@ compiler! gcc
 
 " Sessions
 set sessionoptions-=curdir
-set sessionoptions+=sesdir,winpos,winsize,resize
+set sessionoptions+=sesdir,winpos,winsize,resize,globals,localoptions
 function! SaveSession()
 	if v:this_session != ""
 		exec 'mksession! ' . '"' . v:this_session . '"'
@@ -169,6 +170,24 @@ command! MakeTags :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
 	\ --exclude="moc_*.cpp" --exclude="ui_*.h"
 	\ .
 nmap <F12> :MakeTags<CR>
+
+" Hex mode
+noremap <F11> :call HexMe()<CR>
+let $in_hex=0
+function! HexMe()
+	set binary
+	set noeol
+	if $in_hex>0
+		:%!xxd -g1 -r
+		let $in_hex=0
+	else
+		:%!xxd -g1
+		let $in_hex=1
+	endif
+endfunction
+
+" MUTT
+au BufRead /tmp/mutt-* set tw=72
 
 
 " ####### KEY BINDINGS #######
@@ -250,4 +269,5 @@ let tlist_qmake_settings = 'qmake;t:variables'
 " ClangComplete
 let g:clang_use_library = 1
 let g:clang_complete_copen = 1
+let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
 nmap <silent> <F2> :w \| call g:ClangUpdateQuickFix()<CR>
