@@ -269,5 +269,5 @@ let tlist_qmake_settings = 'qmake;t:variables'
 " ClangComplete
 let g:clang_use_library = 1
 let g:clang_complete_copen = 1
-let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
+let g:clang_library_file = '/usr/lib/llvm-3.6/lib/libclang.so.1'
 nmap <silent> <F2> :w \| call g:ClangUpdateQuickFix()<CR>
