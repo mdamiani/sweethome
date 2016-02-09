@@ -147,6 +147,7 @@ au VimLeave * :call SaveSession()
 command! -nargs=* QMakeDebug :!qmake CONFIG+=debug <args>
 command! -nargs=* QMakeRelease :!qmake <args>
 au BufNewFile,BufRead *.pr{o,i} set filetype=qmake
+au BufNewFile,BufRead *.qml set filetype=javascript
 
 " Debug: breakpoints
 nmap <F9> Oasm("int $3"); // BREAKPOINT<Esc>
