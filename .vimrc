@@ -266,9 +266,3 @@ endif
 let tlist_make_settings  = 'make;m:makros;t:targets;i:includes'
 let tlist_qmake_settings = 'qmake;t:variables'
 "au FileType taglist setlocal guioptions-=L " don't show left scroll bar on taglist window
-
-" ClangComplete
-let g:clang_use_library = 1
-let g:clang_complete_copen = 1
-let g:clang_library_file = '/usr/lib/llvm-3.6/lib/libclang.so.1'
-nmap <silent> <F2> :w \| call g:ClangUpdateQuickFix()<CR>
