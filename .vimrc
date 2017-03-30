@@ -2,13 +2,14 @@
 set backspace=indent,eol,start
 set shiftwidth=4
 set tabstop=4
-set noexpandtab   " TAB vs Spaces
+set expandtab   " TAB vs Spaces
 set autoindent
 "set selectmode=mouse
 set nobackup
 set nowritebackup
 set noswapfile
 set number     " show line numbers
+"set relativenumber " show relative line numbers (slow)
 "set paste     " allow paste from clipboard
 set nopaste    " don't allow paste from clipboard since imap doesn't work
 set title      " set window title
@@ -40,21 +41,25 @@ set smartcase   " if pattern contains uppercase chars, the search is case _sensi
 set showmatch
 set scrolloff=5 " keeps cursor away from top/bottom of screen
 
+" This sets the auto yanking into the clipboard!
+set clipboard=unnamedplus
+let g:clipbrdDefaultReg='+'
 
 
 " ####### COLOR OPTIONS #######
 if has('gui_running')
 	set lines=52
 	set cmdheight=2
-	set columns=100
-	"set background=dark
+	set columns=120
+	set background=dark
 	"let g:inkpot_black_background=1
 	"colorscheme inkpot
-	set background=light
+	"set background=light
 	colorscheme earendel
-	if has("gui_macvim")
-		set guifont=Monaco:h13
-	endif
+	"colorscheme solarized
+	"if has("gui_macvim")
+	"	set guifont=Monaco:h13
+	"endif
 	set guioptions-=T    " toolbar
 	set guioptions-=m    " menu
 	set guioptions-=l    " left scrollbar
@@ -64,13 +69,15 @@ if has('gui_running')
 	"set transparency=10
 else
 	set t_Co=256
-	set background=light
+	"set background=light
+	set background=dark
 	"colorscheme earendel
+	"colorscheme inkpot
 endif
 
 if v:version >= 703 && !has('gui_running')
 	" 80 column delimiter
-	set colorcolumn=80
+	set colorcolumn=120
 	hi ColorColumn ctermbg=gray guibg=darkgray ctermfg=black guifg=black
 	au FileType qf setlocal cc=0
 endif
@@ -118,7 +125,8 @@ else
 	:hi StatusLine cterm=reverse gui=reverse
 	:hi StatusLineNC cterm=none gui=none
 endif
-set statusline=%f%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+" set statusline=%f%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%02.2B]\ [POS=%04l,%04v][%p%%]\ [LEN=%L]
+set statusline=[%n]\ %<%F%m\ %=%{&ff}%y\ %5l/%L%4v\ 0x%04B
 "exec "let &l:statusline = ' '"
 :set laststatus=2
 
@@ -149,6 +157,10 @@ command! -nargs=* QMakeRelease :!qmake <args>
 au BufNewFile,BufRead *.pr{o,i} set filetype=qmake
 au BufNewFile,BufRead *.qml set filetype=javascript
 
+" PlantUML
+autocmd BufRead,BufNewFile * :if getline(1) =~ '^.*startuml.*$'|  setfiletype plantuml | endif
+autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml set filetype=plantuml
+
 " Debug: breakpoints
 nmap <F9> Oasm("int $3"); // BREAKPOINT<Esc>
 
@@ -168,7 +180,7 @@ nmap <S-F3> :copen \| silent RGrep <C-R><C-W>
 set showfulltag
 "set tags+=~/.vimtags/stl
 command! MakeTags :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
-	\ --exclude="moc_*.cpp" --exclude="ui_*.h"
+	\ --exclude="*.vim" --exclude="moc_*.cpp" --exclude="qrc_*.cpp" --exclude="ui_*.h" --exclude="build*"
 	\ .
 nmap <F12> :MakeTags<CR>
 
@@ -188,7 +200,7 @@ function! HexMe()
 endfunction
 
 " MUTT
-au BufRead /tmp/mutt-* set tw=72
+au BufRead /tmp/mutt-* set tw=72 nowrap
 
 
 " ####### KEY BINDINGS #######
@@ -266,3 +278,58 @@ endif
 let tlist_make_settings  = 'make;m:makros;t:targets;i:includes'
 let tlist_qmake_settings = 'qmake;t:variables'
 "au FileType taglist setlocal guioptions-=L " don't show left scroll bar on taglist window
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Vundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Bundle 'vim-scripts/OmniCppComplete'
+"Bundle 'Valloric/YouCompleteMe'
+"Bundle 'rdnetto/YCM-Generator'
+"Bundle 'Rip-Rip/clang_complete'
+"Bundle 'vim-scripts/AutoComplPop'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+"filetype plugin indent on    " required
+filetype on
+
+" OmniCppComplete
+"let g:OmniCpp_NamespaceSearch = 2
+let g:OmniCpp_MayCompleteDot = 0
+let g:OmniCpp_MayCompleteArrow = 0
+let g:OmniCpp_MayCompleteScope = 0
+
+" YouCompleteMe
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+""let g:ycm_global_ycm_extra_conf = '/home/mirko/.vim/ycm_extra_conf.py'
+"let g:ycm_complete_in_comments = 1
+"let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_allow_changing_updatetime = 0
+"let g:ycm_register_as_syntastic_checker = 0
+"let g:ycm_show_diagnostics_ui = 1
+"let g:ycm_enable_diagnostic_signs = 0
+
+" ClangComplete
+"let g:clang_use_library = 1
+"let g:clang_complete_copen = 1
+"let g:clang_library_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
+"nmap <silent> <F2> :w \| call g:ClangUpdateQuickFix()<CR>
+
+" AutoComplPop
+"let g:acp_enableAtStartup = 1
+"let g:acp_behaviorKeywordLength = -1
