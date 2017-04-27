@@ -45,6 +45,14 @@ set scrolloff=5 " keeps cursor away from top/bottom of screen
 set clipboard=unnamedplus
 let g:clipbrdDefaultReg='+'
 
+""
+" Highlight errors
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+""
+hi ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * hi ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * if expand('%') != "" | match ExtraWhitespace /[\t ]\+$/ | endif
+autocmd BufWinLeave * call clearmatches()
 
 " ####### COLOR OPTIONS #######
 if has('gui_running')
@@ -94,10 +102,6 @@ let python_space_error_highlight = 1
 let c_gnu = 1
 let c_space_errors = 1
 let c_comment_strings = 1
-
-hi ExtraWhitespace ctermbg=red guibg=red
-au BufWinEnter * if expand('%') != "" | match ExtraWhitespace /[\t ]\+$/ | endif
-au BufWinLeave * call clearmatches()
 
 
 " Switch between header and implementation
