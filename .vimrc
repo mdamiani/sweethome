@@ -206,6 +206,39 @@ endfunction
 " MUTT
 au BufRead /tmp/mutt-* set tw=72 nowrap
 
+" Go
+augroup gogroup
+	autocmd!
+	"autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
+	autocmd FileType go setlocal noexpandtab                              " don't expand tabs to spaces for Go files
+	autocmd BufWritePre  *.go call GoFmt()                                " call format function and save cursor position
+	"autocmd BufWritePost *.go call cursor(g:gofmt_row, g:gofmt_col)       " restore cursor position
+	"autocmd FileType go autocmd BufWritePre  <buffer> %!gofmt <afile>
+	"autocmd FileType go autocmd BufWritePost <buffer> normal `^
+augroup END
+function! GoFmt()
+	if executable('goimports')
+		"""
+		" Let's add a fake change to preserve cursor position after an undo
+		" http://vim.wikia.com/wiki/Restore_the_cursor_position_after_undoing_text_change_made_by_a_script
+		"""
+		normal ix
+		normal "_x
+		let l:fmt_row=line('.')
+		let l:fmt_col=col('.')
+		:%!goimports
+		if v:shell_error
+			:%print
+			:u
+		endif
+		" Let's add a fake change to preserve cursor position after an undo
+		call cursor(l:fmt_row, l:fmt_col)
+		" Let's add a fake change to preserve mark for last change `.
+		normal ix
+		normal "_x
+	endif
+endfunction
+
 
 " ####### KEY BINDINGS #######
 if has('gui_running')
