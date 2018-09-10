@@ -165,6 +165,9 @@ au BufNewFile,BufRead *.qml set filetype=javascript
 autocmd BufRead,BufNewFile * :if getline(1) =~ '^.*startuml.*$'|  setfiletype plantuml | endif
 autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml set filetype=plantuml
 
+" TOML
+autocmd BufRead,BufNewFile *.toml set filetype=dosini
+
 " Debug: breakpoints
 nmap <F9> Oasm("int $3"); // BREAKPOINT<Esc>
 
