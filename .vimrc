@@ -214,13 +214,21 @@ augroup gogroup
 	autocmd!
 	"autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
 	autocmd FileType go setlocal noexpandtab                              " don't expand tabs to spaces for Go files
-	autocmd BufWritePre  *.go call GoFmt()                                " call format function and save cursor position
+	autocmd BufWritePre  *.go call FmtBuf("goimports")                    " call format function and save cursor position
 	"autocmd BufWritePost *.go call cursor(g:gofmt_row, g:gofmt_col)       " restore cursor position
 	"autocmd FileType go autocmd BufWritePre  <buffer> %!gofmt <afile>
 	"autocmd FileType go autocmd BufWritePost <buffer> normal `^
 augroup END
-function! GoFmt()
-	if executable('goimports')
+
+" C/C++
+augroup clangfmtgroup
+	autocmd!
+	autocmd FileType c,cpp setlocal expandtab
+	autocmd BufWritePre *.c,*.cpp,*.h,*.hpp call FmtBuf("clang-format", "-style=file", "-fallback-style=none")
+augroup END
+
+function! FmtBuf(formatter, ...)
+	if executable(a:formatter)
 		"""
 		" Let's add a fake change to preserve cursor position after an undo
 		" http://vim.wikia.com/wiki/Restore_the_cursor_position_after_undoing_text_change_made_by_a_script
@@ -229,7 +237,7 @@ function! GoFmt()
 		normal "_x
 		let l:fmt_row=line('.')
 		let l:fmt_col=col('.')
-		:%!goimports
+		:execute "%!" . a:formatter join(a:000, ' ')
 		if v:shell_error
 			:%print
 			:u
