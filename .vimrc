@@ -105,9 +105,25 @@ let c_comment_strings = 1
 
 
 " Switch between header and implementation
-let g:F4Ext = 'cpp'
-command! SourceSwitch :exec ":e %:s,.h$,.X123X,:s,." . g:F4Ext . "$,.h,:s,.X123X$,." . g:F4Ext . ","
-nmap <F4> :SourceSwitch<CR>
+"let g:F4Ext = 'cpp'
+"command! SourceSwitch :exec ":e %:s,.h$,.X123X,:s,." . g:F4Ext . "$,.h,:s,.X123X$,." . g:F4Ext . ","
+"nmap <F4> :SourceSwitch<CR>
+function! SourceSwitch()
+    " get the current buffer name, without extension
+    let l:curname = expand('%:t:r')
+    let l:curfull = expand('%:p')
+
+    " match another buffer with the same basename
+    for n in range(1, bufnr('$'))
+        let l:bufname = expand('#'. n. ':t:r')
+        let l:buffull = expand('#'. n. ':p')
+
+        if l:bufname == l:curname && l:buffull != l:curfull
+            exec ':b' . n
+        endif
+    endfor
+endfunction
+nmap <F4> :call SourceSwitch()<CR>
 
 
 " Run program
