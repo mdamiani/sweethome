@@ -45,7 +45,7 @@ function parse_git_branch
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* [(]*\([^)]*\)[)]*/ (\1)/'
 }
 
-#export PS1="${YELLOW}\u${CYAN}@${PURPLE}\h${CYAN}:${GREEN}\w${CYAN}\$${NONE} "
+# Customize shell prompt
 export PS1="${NONE}\u@\h${NONE}:${BLUE}\w${GREEN}\$(parse_git_branch)${NONE}\n\$>${NONE} "
 
 # Helper functions
