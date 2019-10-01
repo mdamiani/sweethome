@@ -64,9 +64,12 @@ Darwin)
 	# read the AppleLocale
 	lngstr=$(defaults read .GlobalPreferences AppleLocale 2>/dev/null)
 	encstr=UTF-8
-	if [ -n "$(locale -a | grep -P ^$lngstr\.$encstr\$)" ]; then
-		export LANG=$lngstr.$encstr
+	locstr=en_US.UTF-8
+	if [ -n "$(locale -a | grep -e ^$lngstr\.$encstr\$)" ]; then
+		locstr=$lngstr.$encstr
 	fi
+	export LC_ALL=$locstr
+	export LANG=$locstr
 	;;
 
 Linux)
