@@ -55,7 +55,6 @@ grep() { `which grep` --color=auto "$@"; }
 grepi() { grep -Eri "$@"; }
 diff() { `which diff` --show-c-function --ignore-all-space --unified "$@"; }
 alias ll="ls -l"
-alias ls="ls --color"
 
 case $(uname -s) in
 Darwin)
@@ -73,6 +72,7 @@ Darwin)
 	;;
 
 Linux)
+	alias ls="ls --color"
 	eval `dircolors`
 	;;
 esac
