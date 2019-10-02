@@ -264,6 +264,9 @@ endfunction
 
 
 " ####### KEY BINDINGS #######
+if has('macunix')
+    set macmeta
+endif
 if has('gui_running')
 	set winaltkeys=no
 else
