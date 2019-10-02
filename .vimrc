@@ -61,9 +61,9 @@ if has('gui_running')
 	"set background=light
 	colorscheme earendel
 	"colorscheme solarized
-	"if has("gui_macvim")
-	"	set guifont=Monaco:h13
-	"endif
+	if has("gui_macvim")
+		set guifont=Menlo:h13
+	endif
 	set guioptions-=T    " toolbar
 	set guioptions-=m    " menu
 	set guioptions-=l    " left scrollbar
