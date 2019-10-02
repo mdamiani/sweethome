@@ -26,7 +26,7 @@ set showcmd       " see partial commands while typing
 syntax enable
 set vb t_vb=      " set visualbell
 "set autochdir "change the current directory whenever window changes
-"set clipboard=unnamed " use the system clipboard as the default register for yank/paste
+set clipboard^=unnamed,unnamedplus " use the system/selection clipboard as the default register for yank/paste
 set timeout timeoutlen=0 " don't wait for key sequences
 
 " Tab completition
@@ -40,10 +40,6 @@ set ignorecase  " sensitive search
 set smartcase   " if pattern contains uppercase chars, the search is case _sensitive_
 set showmatch
 set scrolloff=5 " keeps cursor away from top/bottom of screen
-
-" This sets the auto yanking into the clipboard!
-set clipboard=unnamedplus
-let g:clipbrdDefaultReg='+'
 
 ""
 " Highlight errors
