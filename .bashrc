@@ -60,6 +60,7 @@ case $(uname -s) in
 Darwin)
 	export CLICOLOR=1
 	export LSCOLORS=exfxcxdxbxegedabagacad
+
 	# read the AppleLocale
 	lngstr=$(defaults read .GlobalPreferences AppleLocale 2>/dev/null)
 	encstr=UTF-8
@@ -69,6 +70,11 @@ Darwin)
 	fi
 	export LC_ALL=$locstr
 	export LANG=$locstr
+
+	# Load bash-completion
+	# brew install git bash-completion
+	[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] \
+		&& . "/usr/local/etc/profile.d/bash_completion.sh"
 	;;
 
 Linux)
