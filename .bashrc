@@ -75,6 +75,18 @@ Darwin)
 	# brew install git bash-completion
 	[[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] \
 		&& . "/usr/local/etc/profile.d/bash_completion.sh"
+
+	# Swap Right Alt and Right Control keyboard keys
+	# https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+	# https://apple.stackexchange.com/questions/283252/how-do-i-remap-a-key-in-macos-sierra-e-g-right-alt-to-right-control
+	# hidutil property --set '{"UserKeyMapping":
+	# 	[{"HIDKeyboardModifierMappingSrc":0x7000000e4,
+	# 	  "HIDKeyboardModifierMappingDst":0x7000000e6},
+	# 	 {"HIDKeyboardModifierMappingSrc":0x7000000e6,
+	# 	  "HIDKeyboardModifierMappingDst":0x7000000e4}]
+	# }' >/dev/null
+	# To restore:
+	# hidutil property  --set '{"UserKeyMapping":[]}'
 	;;
 
 Linux)
