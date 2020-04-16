@@ -266,10 +266,21 @@ endfunction
 
 " ####### KEY BINDINGS #######
 if has('macunix')
-    set macmeta
+	set macmeta
 endif
 if has('gui_running')
 	set winaltkeys=no
+
+	if has('macunix')
+		" Support dead-keys with meta to insert accents.
+		" To type an é is now <M-e>e, instead of the more clumsy <C-k>'e.
+		imap <M-e> <C-k>'
+		imap <M-`> <C-k>`
+		imap <M-i> <C-k>^
+		imap <M-u> <C-k>:
+		imap <M-c> <C-k>,c
+		imap <M-S-c> <C-k>,C
+	endif
 else
 	nmap h <M-h>
 	cmap h <M-h>
