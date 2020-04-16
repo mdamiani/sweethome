@@ -1,0 +1,8 @@
+.git
+.svn
+*.vim
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+build*
+vendor*

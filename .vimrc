@@ -198,8 +198,9 @@ nmap <S-F3> :copen \| silent RGrep <C-R><C-W>
 " Tags
 set showfulltag
 "set tags+=~/.vimtags/stl
-command! MakeTags :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q
-	\ --exclude="*.vim" --exclude="moc_*.cpp" --exclude="qrc_*.cpp" --exclude="ui_*.h" --exclude="build*"
+command! MakeTags :!ctags -R
+	\ --c++-kinds=+p --fields=+iaS --extra=+q
+	\ --exclude=@"$HOME"/.ctagsignore
 	\ .
 nmap <F12> :MakeTags<CR>
 
