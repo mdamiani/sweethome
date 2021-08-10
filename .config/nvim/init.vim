@@ -241,6 +241,13 @@ augroup clangfmtgroup
 	autocmd BufWritePre *.c,*.cpp,*.h,*.hpp call FmtBuf("clang-format", "-style=file", "-fallback-style=none")
 augroup END
 
+" Zig
+augroup zigfmtgroup
+	autocmd!
+	autocmd FileType zig,zir setlocal expandtab
+	autocmd BufWritePre *.zi{g,r} call FmtBuf("zig", "fmt", "--stdin")
+augroup END
+
 function! FmtBuf(formatter, ...)
 	if executable(a:formatter)
 		"""
