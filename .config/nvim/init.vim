@@ -41,6 +41,16 @@ set smartcase   " if pattern contains uppercase chars, the search is case _sensi
 set showmatch
 set scrolloff=5 " keeps cursor away from top/bottom of screen
 
+"""""" Auto reload modified files
+" https://www.reddit.com/r/neovim/comments/f0qx2y/automatically_reload_file_if_contents_changed/
+" trigger `autoread` when files changes on disk
+set autoread
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" notification after file change
+autocmd FileChangedShellPost *
+\ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
+""""""
+
 ""
 " Highlight errors
 " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
