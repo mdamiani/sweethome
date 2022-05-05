@@ -228,10 +228,8 @@ augroup gogroup
 	autocmd!
 	"autocmd FileType go setlocal shiftwidth=8 tabstop=8 softtabstop=8     " set tab stops to 8 for Go files
 	autocmd FileType go setlocal noexpandtab                              " don't expand tabs to spaces for Go files
-	autocmd BufWritePre  *.go call FmtBuf("goimports")                        " call format function and save cursor position
-	"autocmd BufWritePost *.go call cursor(g:gofmt_row, g:gofmt_col)       " restore cursor position
-	"autocmd FileType go autocmd BufWritePre  <buffer> %!gofmt <afile>
-	"autocmd FileType go autocmd BufWritePost <buffer> normal `^
+	"autocmd BufWritePre  *.go call FmtBuf("gofmt", "-s")                  " call format function and save cursor position
+	autocmd BufWritePre  *.go call FmtBuf("goimports")
 augroup END
 
 " C/C++
