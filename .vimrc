@@ -180,6 +180,10 @@ autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml set filetype=plantuml
 " TOML
 autocmd BufRead,BufNewFile *.toml set filetype=dosini
 
+" Zig
+au BufNewFile,BufRead *.zig set filetype=zig
+au BufNewFile,BufRead *.zir set filetype=zir
+
 " Debug: breakpoints
 nmap <F9> Oasm("int $3"); // BREAKPOINT<Esc>
 
