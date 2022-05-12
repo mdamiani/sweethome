@@ -282,7 +282,9 @@ endfunction
 
 " ####### KEY BINDINGS #######
 if has('macunix')
-    set macmeta
+	if has("gui_macvim")
+		set macmeta
+	endif
 endif
 if has('gui_running')
 	set winaltkeys=no
