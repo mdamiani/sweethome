@@ -95,10 +95,21 @@ Linux)
 	;;
 esac
 
-# History configuration
-export HISTSIZE=10000           # number of lines in history file
-export HISTCONTROL=ignoreboth   # don't save already present commands
-shopt -s histappend             # append commands to the history file, rather than overwrite it
+case $SHELL in
+/bin/bash)
+	# History configuration
+	export HISTSIZE=10000           # number of lines in history file
+	export HISTCONTROL=ignoreboth   # don't save already present commands
+	shopt -s histappend             # append commands to the history file, rather than overwrite it
+	;;
+
+/bin/zsh)
+	# History configuration
+	export SAVEHIST=10000
+	setopt APPEND_HISTORY
+	setopt HIST_SAVE_NO_DUPS
+	;;
+esac
 
 # Save each command right after it has been executed
 #export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
