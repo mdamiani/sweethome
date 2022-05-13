@@ -1,12 +1,7 @@
---regex-make=/^([^:# \t]+)[ \t]*:($|[^=]+)/\1/t,targets/
---regex-make=/^include[ \t]+(.+)/\1/i,includes/
-
---langdef=qmake
---langmap=qmake:.pro.pri
---regex-qmake=/^([[:upper:]_]+)/\1/t,variables/
-
 --langdef=Zig
 --langmap=Zig:.zig
 --regex-Zig=/fn +([a-zA-Z0-9_]+) *\(/\1/f,functions,function definitions/
 --regex-Zig=/(var|const) *([a-zA-Z0-9_]+) *= *(extern|packed)? *(struct|enum|union)/\2/T,types,type definitions/
 --regex-Zig=/error +([a-zA-Z0-9_]+)/\1/e,errors,error definitions/
+
+--exclude=zig-cache

@@ -1,0 +1,7 @@
+--langdef=qmake
+--langmap=qmake:.pro.pri
+--regex-qmake=/^([[:upper:]_]+)/\1/t,variables/
+
+--exclude="moc_*.cpp"
+--exclude="qrc_*.cpp"
+--exclude="ui_*.h"
