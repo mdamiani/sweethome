@@ -209,6 +209,7 @@ nmap <S-F3> :copen \| silent RGrep <C-R><C-W>
 
 " Tags
 set showfulltag
+set tagcase=match
 "set tags+=~/.vimtags/stl
 command! MakeTags :!ctags -R .
 nmap <F12> :MakeTags<CR>
