@@ -188,10 +188,6 @@ autocmd BufRead,BufNewFile *.pu,*.uml,*.plantuml set filetype=plantuml
 " TOML
 autocmd BufRead,BufNewFile *.toml set filetype=dosini
 
-" Zig
-au BufNewFile,BufRead *.zig set filetype=zig
-au BufNewFile,BufRead *.zir set filetype=zir
-
 " Debug: breakpoints
 nmap <F9> Oasm("int $3"); // BREAKPOINT<Esc>
 
@@ -249,11 +245,11 @@ augroup clangfmtgroup
 augroup END
 
 " Zig
-augroup zigfmtgroup
-	autocmd!
-	autocmd FileType zig,zir setlocal expandtab
-	autocmd BufWritePre *.zi{g,r} call FmtBuf("zig", "fmt", "--stdin")
-augroup END
+" augroup zigfmtgroup
+" 	autocmd!
+" 	autocmd FileType zig,zir setlocal expandtab
+" 	autocmd BufWritePre *.zi{g,r} call FmtBuf("zig", "fmt", "--stdin")
+" augroup END
 
 function! FmtBuf(formatter, ...)
 	if executable(a:formatter)
@@ -336,3 +332,18 @@ function! ToggleBufExplorer()
 	endif
 endfun
 nnoremap <silent> <F7> :call ToggleBufExplorer()<CR>
+
+" Plug configuration
+call plug#begin()
+" The default plugin directory will be as follows:
+"   - Vim (Linux/macOS): '~/.vim/plugged'
+"   - Vim (Windows): '~/vimfiles/plugged'
+"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+" You can specify a custom plugin directory by passing it as the argument
+"   - e.g. `call plug#begin('~/.vim/plugged')`
+"   - Avoid using standard Vim directory names like 'plugin'
+
+" Zig
+Plug 'ziglang/zig.vim'
+
+call plug#end()
