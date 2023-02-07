@@ -347,3 +347,5 @@ call plug#begin()
 Plug 'ziglang/zig.vim'
 
 call plug#end()
+
+let g:zig_fmt_parse_errors=0
