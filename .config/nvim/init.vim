@@ -37,6 +37,7 @@ set wildmode=list:longest   "tab complete to longest common string, like bash
 set incsearch
 set hlsearch
 set ignorecase  " sensitive search
+set wildignorecase " open files case insensitive
 set smartcase   " if pattern contains uppercase chars, the search is case _sensitive_
 set showmatch
 set scrolloff=5 " keeps cursor away from top/bottom of screen
