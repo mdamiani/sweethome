@@ -1,3 +1,5 @@
+SOURCEDIR=$(dirname "$(realpath "$(basename $0)")")
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -28,7 +30,7 @@ fi
 . "$HOME/.cargo/env"
 
 # SSH keys
-[[ ! -f ~/Script/ssh-add.sh ]] || ~/Script/ssh-add.sh 2> /dev/null
+${SOURCEDIR}/scripts/ssh-add.sh 2>/dev/null
 
 # Unprivileged ports
 #sysctl -w net.ipv4.ip_unprivileged_port_start=80
