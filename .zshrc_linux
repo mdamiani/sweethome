@@ -11,10 +11,18 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Go
-[[ ! -f /opt/golang/goenv.sh ]] || source /opt/golang/goenv.sh
+if [[ -d /opt/golang/go ]]; then
+    export GOROOT_BOOTSTRAP=/opt/golang/go1.4
+    export GOPATH=$HOME/go
+    export PATH=$GOPATH/bin:/opt/golang/go/bin:$PATH
+    #export PATH=/opt/golang/protobuf/bin:$PATH
+    #export LD_LIBRARY_PATH=/opt/golang/protobuf/lib:$LD_LIBRARY_PATH
+fi
 
 # Zig
-[[ ! -f /opt/ziglang/zigenv.sh ]] || source /opt/ziglang/zigenv.sh
+if [[ -d /opt/ziglang/zls ]]; then
+    export PATH=/opt/ziglang/zls/zig-out/bin:$PATH
+fi
 
 # Rust
 . "$HOME/.cargo/env"
