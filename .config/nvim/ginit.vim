@@ -104,6 +104,9 @@ nn <leader>= :<C-u>cal <SID>GuiFontSizeDef<CR>
 exe 'nn <expr> <C-ScrollWheelUp>   <SID>font_size_inc(1)'
 exe 'nn <expr> <C-ScrollWheelDown> <SID>font_size_dec(1)'
 
+exe 'nn <expr> <C-=> <SID>font_size_inc(1)'
+exe 'nn <expr> <C--> <SID>font_size_dec(1)'
+
 " applying local additional config
 let g:local_guirc_post = $HOME . '/.neovimrc-gui-local-post'
 if filereadable(g:local_guirc_post) | exe 'so ' . g:local_guirc_post | en
