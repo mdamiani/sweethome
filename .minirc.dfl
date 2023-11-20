@@ -1,0 +1,7 @@
+# Machine-generated file - use setup menu in minicom to change parameters.
+pu port             /dev/ttyUSB0
+pu convf            .minirc.tbl
+pu rtscts           No
+pu localecho        No
+pu linewrap         Yes
+pu addcarreturn     Yes
