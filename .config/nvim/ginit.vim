@@ -40,6 +40,12 @@ en
 " earlier neovim-qt have been supposed to be run with --no-ext-tabline option.
 cal rpcnotify((s:is_neovim_gtk_gui ? 1 : 0), 'Gui', 'Option', 'Tabline', 0)
 
+" Neovide configuration
+if exists("g:neovide")
+	let g:neovide_cursor_animation_length = 0
+	let g:neovide_scroll_animation_length = 0
+	let g:neovide_input_macos_alt_is_meta = v:true
+endif
 
 
 
@@ -53,6 +59,8 @@ fu! s:update_font()
 	if s:is_neovim_gtk_gui " neovim-gtk
 		cal rpcnotify(
 			\ 1, 'Gui', 'Font', s:font_family.' '.string(s:font_size))
+	elseif exists("g:neovide")
+		exe ':set guifont=' . s:font_family. ':h' . s:font_size
 	el " neovim-qt
 		cal rpcnotify(
 			\ 0, 'Gui', 'Font', s:font_family.':h'.string(s:font_size))
@@ -66,6 +74,12 @@ fu! s:set_font_family(family)
 endf
 
 com! -nargs=1 GuiFontFamily cal <SID>set_font_family(<args>)
+
+if exists("g:neovide")
+	let s:font_family = "Menlo"
+	let s:font_size_def = 13
+	let s:font_size = s:font_size_def
+endif
 
 " fast font inc/dec
 
