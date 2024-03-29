@@ -242,7 +242,7 @@ augroup END
 " C/C++
 augroup clangfmtgroup
 	autocmd!
-	autocmd FileType c,cpp setlocal noexpandtab
+	autocmd FileType c,cpp setlocal expandtab
 	autocmd BufWritePre *.c,*.cpp,*.h,*.hpp call FmtBuf("clang-format", "-style=file", "-fallback-style=none")
 augroup END
 
