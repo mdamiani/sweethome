@@ -369,7 +369,14 @@ let g:zig_fmt_parse_errors=0
     local cmp = require('cmp')
     cmp.setup {
       sources = {
-        { name = 'nvim_lsp' },
+        { name = 'nvim_lsp',
+            entry_filter = function(entry)
+                -- Disable snippets
+                local cmp = require('cmp')
+                return entry:get_kind() ~= cmp.lsp.CompletionItemKind.Snippet and
+                       entry:get_kind() ~= cmp.lsp.CompletionItemKind.Keyword
+            end
+        },
         { name = 'buffer', options = {
             get_bufnrs = function()
                 return vim.api.nvim_list_bufs()
