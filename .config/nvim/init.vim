@@ -434,7 +434,12 @@ let g:zig_fmt_parse_errors=0
         end,
       },
     }
+
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+    -- Turn snippets off at LSP level
+    capabilities.textDocument.completion.completionItem.snippetSupport = false
+
     require('lspconfig')['zls'].setup {
         capabilities = capabilities,
     }
