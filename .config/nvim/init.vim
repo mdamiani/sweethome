@@ -394,8 +394,20 @@ let g:zig_fmt_parse_errors=0
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
-        -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-        ['<CR>'] = cmp.mapping.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace, }),
+        -- If nothing is selected (including preselections) add a newline as usual.
+        -- If something has explicitly been selected by the user, select it.
+        ["<CR>"] = cmp.mapping({
+          -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+          i = function(fallback)
+            if cmp.visible() and cmp.get_active_entry() then
+              cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+            else
+              fallback()
+            end
+          end,
+          s = cmp.mapping.confirm({ select = true }),
+          c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        }),
       }),
     }
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
